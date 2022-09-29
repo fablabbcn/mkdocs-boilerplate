@@ -30,7 +30,7 @@ You can do the same from an external url (it has to be a `.md` file if you want 
 
 {{ get_snippet_url('https://raw.githubusercontent.com/fablabbcn/smartcitizen-docs/master/docs/index.md', '## Sections')}}
 
-Or from an external git repo (same as above) - **but very slow!**:
+Or from an external git repo (same as above) - **but very slow!** (make sure it has https or your repo has access to the remote git repo):
 
 {{ get_snippet_git('https://github.com/fablabbcn/smartcitizen-docs.git', 'docs/Guides/deployments/Water sensors.md', '# Water sensors')}}
 

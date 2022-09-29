@@ -43,6 +43,22 @@ theme:
   icon:
     repo: fontawesome/brands/git-alt
 
+extra:
+  social:
+    # - icon: fontawesome/brands/twitter
+    #   link: 'https://twitter.com/smartcitizenkit'
+    # - icon: fontawesome/brands/instagram
+    #   link: 'https://www.instagram.com/smartcitizenkit/'
+    - icon: fontawesome/brands/github
+      link: 'https://www.github.com/fablabbcn/'
+  project: 'This is a template footer text'
+  # footer_logo: '/assets/FLB.png'
+  license: 'GNU Free Documentation License'
+  license_url: 'https://www.gnu.org/licenses/fdl-1.3.html'
+  project_name: 'mkdocs Boilerplate'
+  project_link: 'https://github.com/fablabbcn/mkdocs-boilerplate'
+  fullscreen_button: true
+
 extra_css:
   - stylesheets/extra.css
 
@@ -82,4 +98,4 @@ markdown_extensions:
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
   - 'https://buttons.github.io/buttons.js'
-  - '/javascripts/extra.js'  
+  - 'javascripts/extra.js' 

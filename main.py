@@ -259,7 +259,6 @@ def define_env(env):
         p = re.compile("!\[.*\]\((.*)\)")
         it = p.finditer(markdown)
         for match in it:
-            print (match)
 
             # Check if it's an URL
             regex = re.compile(
