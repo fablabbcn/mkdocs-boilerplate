@@ -1,0 +1,85 @@
+site_name: mkdocs-boilerplate
+site_description: Fab Lab BCN Mkdocs Boilerplate
+site_author: Fab Lab BCN
+repo_name: mkdocs-boilerplate
+repo_url: https://github.com/fablabbcn/mkdocs-boilerplate
+
+theme:
+  language: 'en'
+  name: 'material'
+  features:
+    - instant
+    # - navigation.expand
+    - navigation.indexes
+    - navigation.instant
+    # - navigation.prune
+    # - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.tooltips
+  custom_dir: 'custom_theme'
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: red
+      accent: black
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: black
+      accent: amber
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+  logo: 'assets/FLB.png'
+  favicon: 'assets/favicon.ico'
+  icon:
+    repo: fontawesome/brands/git-alt
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - macros
+  - search
+# - tags
+
+markdown_extensions:
+  - md_in_html
+  - admonition
+  - codehilite
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  # - pymdownx.snippets:
+  #     base_path: 'docs'
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - attr_list
+  - pymdownx.tabbed
+
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+  - 'https://buttons.github.io/buttons.js'
+  - '/javascripts/extra.js'  
