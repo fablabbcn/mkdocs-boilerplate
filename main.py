@@ -8,6 +8,11 @@ import uuid
 import re
 import shutil
 from requests import get
+import git
+
+class Progress(git.remote.RemoteProgress):
+    def update(self, op_code, cur_count, max_count=None, message=''):
+        print (self._cur_line)
 
 def define_env(env):
     """
@@ -135,20 +140,25 @@ def define_env(env):
     @env.macro
     # Inspired by function in mkdocs-snippets-plugin
     def get_snippet_git(git_url, file_path, section_name):
-        repos = dict()
+        if (env.variables.get('repos') is None):
+            env.variables.repos = dict()
 
         p = re.compile("^#+ ")
         m = p.search(section_name)
+
         if m:
             section_level = m.span()[1] - 1
 
-            root = ""
-            if repos.get(git_url) is None:
-                root = "/tmp/" + uuid.uuid4().hex
-                repos[git_url] = root
-                Repo.clone_from(git_url, root)
+            if env.variables.repos.get(git_url) is None:
+                print (f'We have not cloned {git_url} yet. Cloning...')
+                root = env.conf['extra']['tmp_dir'] + "/" + uuid.uuid4().hex
+
+                env.variables.repos[git_url] = root
+                Repo.clone_from(git_url, root, progress=Progress())
+                print (f'Repository {git_url} cloned into: {root}')
             else:
-                root = repos[git_url]
+                print (f'We have already cloned {git_url}. Using it...')
+                root = env.variables.repos[git_url]
 
             content = ""
 
@@ -278,20 +288,20 @@ def define_env(env):
             if not only_url:
 
                 # TODO - !ONLY URL CASE
+                root = env.conf['extra']['base_dir']
                 destinationPath = os.path.realpath(env.project_dir + "/" +
                                                    root + "/gen_/" + path)
 
                 if not os.path.isfile(destinationPath):
                     print("Copying image: " + path + " to " + destinationPath)
-
                     os.makedirs(os.path.dirname(destinationPath), exist_ok=True)
-                    shutil.copyfile(tmpRoot + "/" + path, destinationPath)
+                    shutil.copyfile(tmpRoot + "/" + root + "/" + path, destinationPath)
 
             else:
 
                 destinationPath = "Image can't be replaced as it's relative to markdown"
 
         for path in paths:
-            markdown = markdown.replace(path, "gen_/" + path)
+            markdown = markdown.replace(path, "/gen_" + path)
 
         return markdown

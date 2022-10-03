@@ -32,7 +32,7 @@ You can do the same from an external url (it has to be a `.md` file if you want 
 
 Or from an external git repo (same as above) - **but very slow!** (make sure it has https or your repo has access to the remote git repo):
 
-{{ get_snippet_git('https://github.com/fablabbcn/smartcitizen-docs.git', 'docs/Guides/deployments/Water sensors.md', '# Water sensors')}}
+{{ get_snippet_git('https://github.com/fablabbcn/smartcitizen-minke-docs', 'docs/Guides/getting started/Debugging your sensors.md', '# Debugging your sensors')}}
 
 !!! warning "May take a while"
 	It may take a while if you use this last option because the repo is cloned everytime. It is clone in your `/tmp` folder - so if something doesn't work check your terminal output (not tested on every platform)
