@@ -494,35 +494,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
-    Setup
-  </a>
-  
-    <nav class="md-nav" aria-label="Setup">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manually-switching-circuits-to-i2c-mode" class="md-nav__link">
-    Manually switching circuits to I2C mode
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#connection-to-smartcitizen-kit" class="md-nav__link">
-    Connection to Smartcitizen Kit
+  <a href="#sensors-or-hardware-issues" class="md-nav__link">
+    Sensors or hardware issues
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#raspberry-setup" class="md-nav__link">
-    Raspberry setup
+  <a href="#connectivity-or-configuration-issues" class="md-nav__link">
+    Connectivity or configuration issues
   </a>
   
 </li>
@@ -629,57 +609,78 @@ docs/
 </li>
 </ul>
 <p>Or from an external git repo (same as above) - <strong>but very slow!</strong> (make sure it has https or your repo has access to the remote git repo):</p>
-<div class="admonition warning">
-<p class="admonition-title">Only if you bought them separately</p>
-<p>This guide describes the setup procedure of the Atlas Scientific probes in case you bought them separately. If you have a <a href="/Components/Soil and water/#water-station">Water Station</a>, you don't need to do this.</p>
-</div>
-<p><img src="https://live.staticflickr.com/65535/51126012000_ef69edea6b_k.jpg" alt="Water Station - Patí Científic"></p>
-<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
-<h3 id="manually-switching-circuits-to-i2c-mode">Manually switching circuits to I2C mode<a class="headerlink" href="#manually-switching-circuits-to-i2c-mode" title="Permanent link">&para;</a></h3>
-<p>If the drivers are new normally they come configured in UART mode so we need to change them to I2C mode.</p>
+<p><img src="https://live.staticflickr.com/65535/50977039386_c250d3141d_k.jpg" width="2000" height="1333" alt="Smart Citizen Kits being tested at Fab Lab Barcelona"></p>
+<p>This guide will try to summarize the basic steps to debug your sensors whenever there's any problem. Let's be clear, there is no unique reason or point of failure for the sensors to fail, and very likely, if you use them extensively, something will happen, either after 1 month, 1 year, or 5 years. It is key to know how to debug them:</p>
 <ol>
-<li>Remove circuit from Tentacle shield.</li>
-<li>Put the circuit into a breadboard.</li>
-<li>For <strong>PH</strong>, <strong>DO</strong>, <strong>ORP</strong> and <strong>EC</strong>: Short the <code>PGND</code> pin to the <code>TX</code> pin using a jumper wire.</li>
-<li>For <strong>RTD</strong> (temperature): Short the <code>PRB</code> pin to the <code>TX</code> pin using a jumper wire.</li>
-<li>Power the device (connecting <code>GND</code> and <code>VCC</code>)</li>
-<li>Wait for LED to change from green to blue (UART→I2C) or from blue to green (I2C→&gt;UART).</li>
-<li>Remove the jumper wire from the <code>PGND</code> (or <code>PRB</code> respectively) pin to the <code>TX</code> pin (Do this <strong>before removing power!</strong>).</li>
-<li>Remove power (<code>VCC</code>).</li>
-<li>Apply power (<code>VCC</code>).</li>
-<li>The device is now in the new mode (repeat all steps to switch back to previous mode).</li>
+<li>Reset the sensor using the <strong>hardware reset button</strong>. This is either here:</li>
 </ol>
-<div class="admonition warning">
-<p class="admonition-title">Official documentation</p>
-<p><a href="https://www.whiteboxes.ch/tentacle/#tentacle-t3">Atlas Doc</a></p>
+<p><img alt="" src="/__gen__/assets/images/sck_2/SCK21_Reset.png" /></p>
+<p>or here:</p>
+<p><img alt="" src="/__gen__/assets/images/station-v3-bottom-anotated-reset.jpeg" /></p>
+<ol>
+<li>
+<p>If this doesn't solve the problem, you might want to connect to the sensors <a href="/Guides/getting started/Using the Shell">using the Shell</a>. </p>
+</li>
+<li>
+<p>The next steps would depend on what the actual problem of your sensor is. The most common problems are:</p>
+<ul>
+<li>Sensors or hardware issues</li>
+<li>Connectivity or configuration issues</li>
+</ul>
+</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Basic steps</p>
+<ol>
+<li>Reset the kit</li>
+<li>Follow this guide</li>
+<li>Check the <a href="/_FAQ">FAQs</a></li>
+<li>Check the forum</li>
+<li>Ask <a href="mailto:support@smartcitizen.me">support</a> with a nice explanation</li>
+</ol>
 </div>
-<h2 id="connection-to-smartcitizen-kit">Connection to Smartcitizen Kit<a class="headerlink" href="#connection-to-smartcitizen-kit" title="Permanent link">&para;</a></h2>
-<p><img alt="" src="https://i.imgur.com/Dc6Us2F.png" /></p>
-<p>After connecting the <a href="https://atlas-scientific.com/carrier-boards/whitebox-labs-tentacle-t3/">Tentacle 3</a> to the SCK power your kit and if youre connected to the shell the autodetecition message should look similar to this (depending on the connected drivers and probes):</p>
-<div class="highlight"><pre><span></span><code>Urban board detected
-Enable Atlas Temperature
-Enable Atlas PH
-Enable Atlas Conductivity
-Enable Atlas Specific gravity
-...
+<h2 id="sensors-or-hardware-issues">Sensors or hardware issues<a class="headerlink" href="#sensors-or-hardware-issues" title="Permanent link">&para;</a></h2>
+<p>As said above, there is no single point of failure for the sensors.</p>
+<ol>
+<li>If the LED is working normally, but there is one or more sensor that is not responding, connect the <a href="/Guides/getting started/Using the Shell/">Shell</a> and type:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>version
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Sensor calibration</p>
-<p>Make sure to follow our sensor calibration guide for the <a href="/Guides/calibration/Water sensors/">water sensors</a>.</p>
-</div>
-<h2 id="raspberry-setup">Raspberry setup<a class="headerlink" href="#raspberry-setup" title="Permanent link">&para;</a></h2>
+<p>Note this for later. If it's an old version of the firmware, it might help to <a href="https://docs.smartcitizen.me/Guides/firmware/Update the firmware/">directly upgrade</a>.</p>
+<div class="highlight"><pre><span></span><code>sensor
+</code></pre></div>
+<p>This should show if all the sensors are being recognised. If one of them is missing from the list, you can try to check the <code>i2c</code> bus (where most of the sensors are connected):</p>
+<div class="highlight"><pre><span></span><code>i2c
+</code></pre></div>
+<p>If one of the sensors is not shown, it means that there is probably a hardware issue with the sensor itself and that the microcontroller is not recognising it. Now, it would be useful to look for <a href="https://forum.smartcitizen.me/t/unit-failure-suffering-from-weather/1262">corrosion signs</a> around the sensors and maybe reflash the firmware in case there is a better detection of the sensors in a firmware update. Otherwise, it is likely that the hardware is no longer functioning and it needs replacement.</p>
 <ol>
-<li>Install raspbian</li>
-<li>Enable I2C with raspi-config, reboot, upgrade.</li>
-<li>Install packages and reboot.
-    <div class="highlight"><pre><span></span><code>sudo apt-get install python-smbus i2c-tools
-</code></pre></div></li>
-<li>Connect the shield with the pi off.</li>
-<li>Test I2C 
-    <div class="highlight"><pre><span></span><code>sudo i2cdetect -y 1
-</code></pre></div></li>
-<li>Code example <a href="https://github.com/AtlasScientific/Raspberry-Pi-sample-code/blob/master/i2c.py">https://github.com/AtlasScientific/Raspberry-Pi-sample-code/blob/master/i2c.py</a></li>
+<li>
+<p>If the <a href="https://forum.smartcitizen.me/t/persistent-green-light-during-onboarding/1330/25">LED is static</a>, very likely there is a problem with the detection or electric behaviour of the sensors. For this, it is useful to start disconnecting each component to understand which component fails:</p>
+</li>
+<li>
+<p>Disconnect the power (USB and battery) and disconnect the PMS5003 sensor. Power again and check</p>
+</li>
+<li>Disconnect the power (USB and battery) and disconnect the Urban Board. Power again and check</li>
 </ol>
+<p>If this doesn't help, try to <a href="https://docs.smartcitizen.me/Guides/firmware/Update the firmware/">reflash the firmware</a>, as there might be improvements. If it helps, also update and check if it improves. If the sensors heat up too much, there might be an electric issue.</p>
+<h2 id="connectivity-or-configuration-issues">Connectivity or configuration issues<a class="headerlink" href="#connectivity-or-configuration-issues" title="Permanent link">&para;</a></h2>
+<p>Normally, configuration or connectivity issues can be due to the following reasons:
+- Typo during the setup process
+- Old firmware</p>
+<ol>
+<li>If not using the Shell, make sure that the information provided for the network is correct by putting the SCK in SETUP mode (RED LED) and accessing the SmartCitizeXXXX network.</li>
+</ol>
+<p><img alt="" src="/__gen__/assets/images/sck_2/esp_force_upload_1.png" /></p>
+<ol>
+<li>If using the Shell, you can check the recording configuration by typing:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>config
+</code></pre></div>
+<p>If you see a problem with the configuration, you can fix each item or the whole thing by typing:</p>
+<div class="highlight"><pre><span></span><code>config -mode network -wifi &quot;SSID&quot; &quot;PASS&quot; -token token
+</code></pre></div>
+<p>Note that the <code>token</code> does not have quotes around it and that the <code>SSID</code> and <code>PASS</code> have straight quoutes.</p>
+<p>In case there is no problem with the configuration, there problem might get solved by a firmware update.</p>
 <div class="admonition warning">
 <p class="admonition-title">May take a while</p>
 <p>It may take a while if you use this last option because the repo is cloned everytime. It is clone in your <code>/tmp</code> folder - so if something doesn't work check your terminal output (not tested on every platform)</p>
