@@ -4,6 +4,7 @@ site_author: Fab Lab BCN
 repo_name: mkdocs-boilerplate
 repo_url: https://github.com/fablabbcn/mkdocs-boilerplate
 
+
 theme:
   language: 'en'
   name: 'material'
@@ -60,6 +61,7 @@ extra:
   fullscreen_button: true
   tmp_dir: '/tmp'
   base_dir: 'docs'
+  local: false
 
 extra_css:
   - stylesheets/extra.css

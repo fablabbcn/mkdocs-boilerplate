@@ -2,3 +2,4 @@ site/
 *.DS_Store
 aux/
 __pycache__/
+__gen__

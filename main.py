@@ -302,6 +302,22 @@ def define_env(env):
                 destinationPath = "Image can't be replaced as it's relative to markdown"
 
         for path in paths:
-            markdown = markdown.replace(path, "/__gen__" + path)
+            prepend_path = ''
+            if (env.conf['site_url'] == ''):
+                print ('INFO: No configured site_url in config')
+                if (env.conf['repo_name'] == ''):
+                    print ('WARNING: Cannot get path to deployed site')
+                else:
+                    print (f"INFO: using {env.conf['repo_name']} for url")
+                if (env.conf['extra'].get('local') is not None):
+                    if not env.conf['extra']['local']:
+                        prepend_path = '/'+env.conf.get('repo_name')
+                    else:
+                        print ('Forcing local deploy')
+                else:
+                    print ('INFO: Assuming local deploy')
+            print (f'INFO: prepending "{prepend_path}" to paths')
+
+            markdown = markdown.replace(path, prepend_path + "/__gen__" + path)
 
         return markdown
