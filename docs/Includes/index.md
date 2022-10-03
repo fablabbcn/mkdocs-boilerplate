@@ -22,7 +22,7 @@ You can also select a section:
 	**Also, make sure you set all the links/images with absolute paths**:
 
 		- This is good:  `![](/assets/images/photo.png)`
-		- This is **bad**:  `![](/assets/images/photo.png)`
+		- This is **bad**:  `![](../../assets/images/photo.png)`
 
 ## Remote includes
 

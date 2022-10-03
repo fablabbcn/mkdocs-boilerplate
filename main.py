@@ -181,6 +181,7 @@ def define_env(env):
 
             # If there are any images, find them, copy them
             result = copy_markdown_images(root, result, only_url=False)
+
             return result
         else:
             return "Markdown section doesn't exist in source"
@@ -215,6 +216,7 @@ def define_env(env):
 
                 # If there are any images, find them, copy them
                 result = copy_markdown_images(None, result, only_url=True)
+
             else:
                 result = None
             return result
@@ -285,21 +287,24 @@ def define_env(env):
 
             path = match.group(1)
             paths.append(path)
+
             if not only_url:
 
                 # TODO - !ONLY URL CASE
-                root = env.conf['extra']['base_dir']
+                docsRoot = env.conf['extra']['base_dir']
+                siteRoot = env.conf['extra']['site_dir']
+
                 destinationPath = os.path.realpath(env.project_dir + "/" +
-                                                   root + "/__gen__/" + path)
+                                                   siteRoot + "/__gen__/" + path)
 
                 if not os.path.isfile(destinationPath):
-                    print("Copying image: " + path + " to " + destinationPath)
+                    print("Copying image: " + tmpRoot + "/" + docsRoot + "/" + path + " to: " + destinationPath)
                     os.makedirs(os.path.dirname(destinationPath), exist_ok=True)
-                    shutil.copyfile(tmpRoot + "/" + root + "/" + path, destinationPath)
+                    shutil.copyfile(tmpRoot + "/" + docsRoot + "/" + path, destinationPath)
 
             else:
 
-                destinationPath = "Image can't be replaced as it's relative to markdown"
+                print ("WARNING: Image can't be added as it's relative to markdown")
 
         for path in paths:
             prepend_path = ''

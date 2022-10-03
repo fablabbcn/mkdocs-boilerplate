@@ -61,6 +61,7 @@ extra:
   fullscreen_button: true
   tmp_dir: '/tmp'
   base_dir: 'docs'
+  site_dir: 'site'
   local: false
 
 extra_css:
