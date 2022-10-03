@@ -28,11 +28,11 @@ Or from an external git repo (same as above) - **but very slow!** (make sure it 
 
 When doing it from a remote git repo, make sure to:
 
-	- Make the `config.local` to false
-	- Make sure you understand the:
-		- `site_url`: if not specified, it's because you don't have a custom domain. `repo_name` will be used. Otherwise, will leave an empty relative url for deploy
-		- `repo_name`: the name of the repo. Normally used for the xxx.github.io/repo_name/
-		- `extra.local`: to make it easier to see whether you have a local deployment or not. If you have a domain name set with `site_url` it doesn't really matter
-		- `extra.tmp_dir`: where the remote repos will be cloned (default `/tmp`)
-		- `extra.base_dir`: the base directory of your documentation with respect to the main dir (default `docs`)
-		- `extra.site_dir: the base directory of the build process with respect to the main dir - before moving to deploy branch... (default `site`)
+- Make the `config.local` to false
+- Make sure you understand the:
+	- `site_url`: if not specified, it's because you don't have a custom domain. `repo_name` will be used. Otherwise, will leave an empty relative url for deploy
+	- `repo_name`: the name of the repo. Normally used for the xxx.github.io/repo_name/
+	- `extra.local`: to make it easier to see whether you have a local deployment or not. If you have a domain name set with `site_url` it doesn't really matter
+	- `extra.tmp_dir`: where the remote repos will be cloned (default `/tmp`)
+	- `extra.base_dir`: the base directory of your documentation with respect to the main dir (default `docs`)
+	- `extra.site_dir: the base directory of the build process with respect to the main dir - before moving to deploy branch... (default `site`)
