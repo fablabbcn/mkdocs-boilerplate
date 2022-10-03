@@ -290,7 +290,7 @@ def define_env(env):
                 # TODO - !ONLY URL CASE
                 root = env.conf['extra']['base_dir']
                 destinationPath = os.path.realpath(env.project_dir + "/" +
-                                                   root + "/gen_/" + path)
+                                                   root + "/__gen__/" + path)
 
                 if not os.path.isfile(destinationPath):
                     print("Copying image: " + path + " to " + destinationPath)
@@ -302,6 +302,6 @@ def define_env(env):
                 destinationPath = "Image can't be replaced as it's relative to markdown"
 
         for path in paths:
-            markdown = markdown.replace(path, "/gen_" + path)
+            markdown = markdown.replace(path, "/__gen__" + path)
 
         return markdown
