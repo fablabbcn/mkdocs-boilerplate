@@ -21,5 +21,5 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
 ## Extra stuff
 
-You will see in some pages a one or two buttons on top. One for making the page "Fullscreen" (in every page) and another one for a PDF download, which you can add as an attachment. Check here an example for the PDF feature.
+You will see in some pages a one or two buttons on top. One for making the page "Fullscreen" (in every page) and another one for a PDF download, which you can add as an attachment. This is an example for the PDF feature.
 
